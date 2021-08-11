@@ -9,7 +9,7 @@ system "useradd prometheus" or die $!;
 
 #unzip the package
 $thezip = 'node_exporter-1.1.2.linux-amd64.gz'
-$thedir =~ s//.gz/g;
+$thedir =~ s/\.gz//g;
 
     open unzip, "tar -xvf $thezip" or die $1;
         while $status = <unzip>{
