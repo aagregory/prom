@@ -1,7 +1,8 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -w
 
-#install and configure the node exporter #make sure you run as root.
-#add prometheus user if the user is already there
+#install and configure the node exporter
+#run as root.
+#adds prometheus user if the user isn't already there
 #created by Greg Abbas
 
 #add the prometheus user
@@ -19,7 +20,6 @@ $thedir =~ s/\.gz//g;
 
 
 #move the files
-
 system "mv -rp ${thedir} /usr/share/" or die $!; 
 system "chown -R prometheus.prometheus /usr/share/${thedir}/" or die $!;
 system "cp node_exporter.service /etc/systemd/system/" or die $!;
@@ -30,7 +30,7 @@ system "cp node_exporter.service /etc/systemd/system/" or die $!;
         }
     close service;
 
-
+#start the service
 system "systemctl start node_exporter" or die $1;
     
     open state, "servicectl status node_exporter" or die $!;
