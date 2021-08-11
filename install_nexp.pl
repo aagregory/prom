@@ -9,6 +9,7 @@ system "useradd prometheus" or die $!;
 
 #unzip the package
 $thezip = 'node_exporter-1.1.2.linux-amd64.gz'
+$thedir =~ s//.gz/g;
 
     open unzip, "tar -xvf $thezip]" or die $1;
         while $status = <unzip>{
@@ -19,8 +20,8 @@ $thezip = 'node_exporter-1.1.2.linux-amd64.gz'
 
 #move the files
 
-system "mv -rp node_exporter-1.1.2.linux-amd64 /usr/share/" or die $!; 
-system "chown -R prometheus.prometheus /usr/share/node_exporter-1.1.2.linux-amd64/" or die $!;
+system "mv -rp ${thedir} /usr/share/" or die $!; 
+system "chown -R prometheus.prometheus /usr/share/${thedir}/" or die $!;
 system "cp node_exporter.service /etc/systemd/system/" or die $!;
 
     open service, "servicectl enable node_exporter" or die $!;
