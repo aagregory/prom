@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-#install and configure the node exporter
+#install and configure the node exporter in EC2 Linux
 #run as root.
 #adds prometheus user if the user isn't already there
 #created by Greg Abbas
