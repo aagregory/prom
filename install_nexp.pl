@@ -8,10 +8,14 @@
 #add the prometheus user
 system "useradd prometheus" or die $!;
 
-#unzip the package
+#Update the zip filename with the binary info
 $thezip = 'node_exporter-1.1.2.linux-amd64.gz'
+
+#parse binary home directory name from zip
+$thedir = $thezip;
 $thedir =~ s/\.gz//g;
 
+#Unzip and stage the package
     open unzip, "tar -xvf $thezip" or die $1;
         while $status = <unzip>{
             print $status;
